@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js"></script>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  {% block link %}
+  {% endblock %}
+  <title>{% block title %}Home{% endblock %}</title>
+ </head>
+ <body>
+ <input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+  <nav class="menu">
+    <ul>
+      <a href="{% url 'home' %}"><li>Home</li></a>
+      <a href="{% url 'new' %}"><li>New</li></a>
+      <a href="{% url 'random' %}"><li>Random</li></a>
+    </ul>
+
+    <label for="navbar-checkbox" class="navbar-handle"></label>
+  </nav>
+ {% block content %}
+ 
+ {% endblock %}
+ </body>
+</html>
