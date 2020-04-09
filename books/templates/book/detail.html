@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/read.css' %}">
+{% endblock %}
+
+
+{% block title %}
+    Read
+{% endblock %}
+
+
+{% block content %}
+<input type="checkbox" id="navbar-checkbox" class="navbar-checkbox">
+    <nav class="menu">
+        <ul>
+            <a href="{% url 'home' %}"><li>Home</li></a>
+            {% if request.user.is_authenticated and request.user.is_staff %}
+                <a href="{% url 'edit' books.id %}"><li>Update</li></a>
+                <a href="{% url 'delete' books.id %}"><li>Delete</li></a>
+            {% endif %}
+        </ul>
+<label for="navbar-checkbox" class="navbar-handle"></label>
+
+<div class="card">
+    <div class="card-content">
+        <h1>{{ books.title }}</h1>
+        <small>{{ books.author }}</small>
+        <hr/>
+        <div id="content-main">
+        <p>{{ books.book }}</p>
+        </div>
+        <hr/>
+    </div>
+    {{ comments.count }} Comment{{comments|pluralize }}
+    {% for comment in comments %}
+        <div class="card-comment">
+            <p>{{ comment.username }}, <small>{{ comment.text }}</small></p>
+
+        </div>
+    {% endfor %}
+    <form method='POST'>
+        {% csrf_token %}
+        {{ comment_form|crispy }}
+        <input type="submit" value="submit" class="btn btn-primary">
+    </form>
+</div>
+
+{% endblock %}
