@@ -21,7 +21,7 @@
         <ul>
             <a href="{% url 'home' %}"><li>Home</li></a>
             {% if request.user.is_authenticated and request.user.is_staff %}
-                <a href="{% url 'edit' books.id %}"><li>Update</li></a>
+                <a href="{% url 'update' books.id %}"><li>Update</li></a>
                 <a href="{% url 'delete' books.id %}"><li>Delete</li></a>
             {% endif %}
         </ul>
@@ -40,7 +40,7 @@
     {{ comments.count }} Comment{{comments|pluralize }}
     {% for comment in comments %}
         <div class="card-comment">
-            <p>{{ comment.username }}, <small>{{ comment.text }}</small></p>
+            <p>{{ comment.username }}. <small>{{ comment.text }}</small></p>
 
         </div>
     {% endfor %}

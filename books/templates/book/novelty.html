@@ -7,14 +7,14 @@
 
 
 {% block title %}
-    News
+    Novelty
 {% endblock %}
 
 
 {% block content %}
 <div class="container">
     {% for book in books %}
-    <a href="{% url 'read' book.id %}">
+    <a href="{% url 'detail' book.id %}">
         <div class="card" style="--cards:5;">
             <div class="child">
               <h4>{{ book.title }}</h4>

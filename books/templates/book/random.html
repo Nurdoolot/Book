@@ -1,27 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
+
+
 {% block link %}
     <link rel="stylesheet" href="{% static 'css/book.css' %}">
 {% endblock %}
+
 
 {% block title %}
     Random
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    {% for book in books %}
-    <a href="{% url 'read' book.id %}">
+    <div class="container">
+        {% for book in books %}
+        <a href="{% url 'detail' book.id %}">
         <div class="card" style="--cards:5;">
             <div class="child">
-              <h4>{{ book.title }}</h4>
-              <h6>{{ book.book|truncatewords:13 }}</h6>
-              <p>{{ book.author }}</p>
+                <h4>{{ book.title }}</h4>
+                <h6>{{ book.book|truncatewords:8 }}</h6>
+                <p>{{ book.author }}</p>
             </div>
             <div class="child"></div>
             <div class="child"></div>
-          </div>
-    </a>
-    {% endfor %}
-</div>
+        </div>
+        </a>
+        {% endfor %}
+    </div>
 {% endblock %}
