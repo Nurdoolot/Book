@@ -18,9 +18,15 @@
       {% if request.user.is_authenticated and request.user.is_staff %}
         <a href="{% url 'create' %}"><li>Create</li></a>
       {% endif %}
-        <a href="{% url 'home' %}"><li>Home</li></a>
         <a href="{% url 'novelty' %}"><li>Novelty</li></a>
+        <a href="{% url 'home' %}"><li>Home</li></a>
         <a href="{% url 'random' %}"><li>Random</li></a>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}"><li>Logout</li></a>
+      {% else %}
+        <a href="{% url 'login' %}"><li>Sign In</li></a>
+        <a href="{% url 'register' %}"><li>Sign Up</li></a>
+      {% endif %}
       </ul>
 
 

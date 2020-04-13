@@ -44,11 +44,14 @@
 
         </div>
     {% endfor %}
+    <hr/>
+{% if request.user.is_authenticated %}
     <form method='POST'>
         {% csrf_token %}
         {{ comment_form|crispy }}
         <input type="submit" value="Add" class="btn btn-outline-dark">
     </form>
+{% endif %}
 </div>
 
 {% endblock %}

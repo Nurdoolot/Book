@@ -2,13 +2,17 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from .forms import CommentForm
 from .models import Book, Comment
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+
+
 
 class HomeListView(ListView):
     model = Book
     template_name = 'book/home.html'
     context_object_name = 'books'
+
 
 
 class BookListView(ListView):
@@ -24,9 +28,8 @@ def book_detail_view(request, pk):
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
         if comment_form.is_valid():
-            username = request.POST.get('username')
             text = request.POST.get('text')
-            comment = Comment.objects.create(post=post, username=username, text=text)
+            comment = Comment.objects.create(post=post, username=request.user, text=text)
             comment.save()
     else:
         comment_form = CommentForm()
